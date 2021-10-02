@@ -1,0 +1,22 @@
+- name: compile neovim prerequisites 1
+  apt:
+    name: ['ninja-build', 'gettext', 'libtool', 'libtool-bin', 'autoconf']
+  tags:
+  - neovim
+
+- name: compile neovim prerequisites 2
+  apt:
+    name: ['automake', 'make', 'g++', 'pkg-config', 'build-essential', 'unzip', 'curl']
+  tags:
+  - neovim
+- name: Clone neovim
+  ansible.builtin.git:
+    repo: https://github.com/neovim/neovim.git
+    dest: '~/compilables/neovim'
+  tags:
+  - neovim
+- name: Compile neovim
+  shell: cd ~/compilables/neovim && make CMAKE_BUILD_TYPE=Release && make install
+  tags:
+  - neovim
+

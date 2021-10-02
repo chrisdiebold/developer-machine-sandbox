@@ -1,0 +1,18 @@
+- name: install tmux dependencies
+  apt:
+    name: ['automake','libevent-dev', 'ncurses-dev', 'build-essential', 'bison', 'pkg-config']
+  tags: 
+  - tmux
+- name: Clone Tmux
+  ansible.builtin.git:
+    repo: https://github.com/tmux/tmux.git
+    dest: '~/compilables/tmux'
+  tags:
+  - tmux
+- name: Compile Tmux
+  shell: cd ~/compilables/tmux && sh autogen.sh && ./configure && make && make install
+  tags:
+  - tmux
+
+- name: install tmux
+  apt: name=tmux

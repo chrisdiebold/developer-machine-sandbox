@@ -10,3 +10,5 @@
   tasks: 
     - include: tasks/zsh.yml
     - include: tasks/node.yml
+    - include: tasks/tmux.yml
+    - include: tasks/nvim.yml
